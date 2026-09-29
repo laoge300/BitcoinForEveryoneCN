@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="普通人的比特币指南：不预测涨跌，只研究普通人如何更简单地理解、买入、长期持有和保管比特币。">
+  <title>普通人的比特币指南</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "PingFang SC", "Hiragino Sans GB",
+        "Microsoft YaHei", Arial, sans-serif;
+      background: #f7f8fa;
+      color: #1f2328;
+      line-height: 1.7;
+    }
+
+    a {
+      color: #0969da;
+      text-decoration: none;
+    }
+
+    .topbar {
+      height: 5px;
+      background: #f7931a;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 20px 80px;
+    }
+
+    .hero {
+      text-align: center;
+      background: #fff;
+      border: 1px solid #d8dee4;
+      border-radius: 16px;
+      padding: 46px 28px 38px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: 42px;
+      line-height: 1.25;
+    }
+
+    .hero .subtitle {
+      font-size: 18px;
+      color: #57606a;
+      max-width: 850px;
+      margin: 0 auto 22px;
+    }
+
+    .badges {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 13px;
+      border-radius: 6px;
+      background: #24292f;
+      color: #fff;
+    }
+
+    .hero-links {
+      margin-top: 26px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-block;
+      border: 1px solid #d0d7de;
+      padding: 9px 16px;
+      border-radius: 8px;
+      background: #fff;
+      color: #24292f;
+      font-weight: 600;
+    }
+
+    .button.primary {
+      background: #f7931a;
+      border-color: #f7931a;
+      color: #fff;
+    }
+
+    .notice {
+      margin-top: 22px;
+      font-size: 14px;
+      color: #656d76;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 20px;
+    }
+
+    .sidebar,
+    .content {
+      background: #fff;
+      border: 1px solid #d8dee4;
+      border-radius: 12px;
+    }
+
+    .sidebar {
+      padding: 20px;
+      align-self: start;
+      position: sticky;
+      top: 16px;
+    }
+
+    .sidebar h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 17px;
+    }
+
+    .filter-group {
+      margin-bottom: 22px;
+    }
+
+    .filter-group label.title {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    select,
+    input[type="search"] {
+      width: 100%;
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      padding: 10px 11px;
+      background: #fff;
+      font-size: 15px;
+    }
+
+    .reset {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #d0d7de;
+      background: #f6f8fa;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .content {
+      padding: 24px;
+    }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .count {
+      font-size: 14px;
+      color: #656d76;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      border: 1px solid #d8dee4;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      transition: .15s ease;
+    }
+
+    .card:hover {
+      border-color: #f7931a;
+      box-shadow: 0 2px 12px rgba(0,0,0,.05);
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .card p {
+      margin: 8px 0 0;
+      color: #57606a;
+    }
+
+    .meta {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #f6f8fa;
+      border: 1px solid #d8dee4;
+      color: #57606a;
+    }
+
+    .tag.data {
+      background: #ddf4ff;
+      border-color: #b6e3ff;
+      color: #0969da;
+    }
+
+    .tag.fact {
+      background: #dafbe1;
+      border-color: #aceebb;
+      color: #1a7f37;
+    }
+
+    .tag.inference {
+      background: #fff8c5;
+      border-color: #eed888;
+      color: #9a6700;
+    }
+
+    .tag.opinion {
+      background: #ffebe9;
+      border-color: #ffcecb;
+      color: #cf222e;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: #656d76;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      color: #656d76;
+      padding: 38px 10px 0;
+      font-size: 13px;
+    }
+
+    @media (max-width: 780px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .hero {
+        padding: 34px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="topbar"></div>
+
+<div class="container">
+
+  <section class="hero">
+
+    <h1>普通人的比特币指南</h1>
+
+    <div class="subtitle">
+      不预测涨跌，只研究普通人如何更简单地理解、买入、长期持有和保管比特币。
+      用历史数据、协议事实和公开资料，把常见问题说清楚。
+    </div>
+
+    <div class="badges">
+      <span class="badge">条目 <span id="topCount">0</span> 条</span>
+      <span class="badge">主题 6 类</span>
+      <span class="badge">不喊单</span>
+      <span class="badge">不使用杠杆</span>
+      <span class="badge">持续更新</span>
+    </div>
+
+    <div class="hero-links">
+      <a class="button primary" href="#search">在线检索</a>
+      <a class="button" href="https://github.com/laoge300/BitcoinForEveryoneCN">GitHub 仓库</a>
+      <a class="button" href="#about">项目说明</a>
+    </div>
+
+    <div class="notice">
+      历史表现不能保证未来结果。本项目提供信息与研究工具，不替任何人作投资决定。
+    </div>
+
+  </section>
+
+
+  <div class="workspace" id="search">
+
+    <aside class="sidebar">
+
+      <h3>筛选</h3>
+
+      <div class="filter-group">
+        <label class="title">主题</label>
+        <select id="categoryFilter">
+          <option value="">全部主题</option>
+          <option value="开始之前">开始之前</option>
+          <option value="怎么买">怎么买</option>
+          <option value="波动与风险">波动与风险</option>
+          <option value="怎么保管">怎么保管</option>
+          <option value="常见误区">常见误区</option>
+          <option value="长期持有">长期持有</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="title">依据类型</label>
+        <select id="evidenceFilter">
+          <option value="">全部</option>
+          <option value="数据级">数据级</option>
+          <option value="事实级">事实级</option>
+          <option value="推论级">推论级</option>
+          <option value="观点级">观点级</option>
+        </select>
+      </div>
+
+      <button class="reset" onclick="resetFilters()">清除筛选</button>
+
+    </aside>
+
+
+    <main class="content">
+
+      <div class="search-row">
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="搜索：定投、暴跌、交易所、助记词、2100 万……"
+        >
+      </div>
+
+      <div class="count">
+        找到 <strong id="resultCount">0</strong> 条内容
+      </div>
+
+      <div id="cards"></div>
+
+      <div class="empty" id="empty">
+        没找到相关内容。换个关键词试试。
+      </div>
+
+    </main>
+
+  </div>
+
+
+  <section id="about" style="margin-top:24px;background:#fff;border:1px solid #d8dee4;border-radius:12px;padding:28px;">
+
+    <h2 style="margin-top:0;">怎么理解这里的“依据类型”</h2>
+
+    <p><strong>数据级：</strong>可以直接使用历史行情、区块链数据或公开数据验证。</p>
+
+    <p><strong>事实级：</strong>来自 Bitcoin 协议、官方文件、监管文件或其他一手资料。</p>
+
+    <p><strong>推论级：</strong>根据历史数据或事实推导，但未来不保证重复。</p>
+
+    <p><strong>观点级：</strong>没有唯一正确答案，需要结合个人情况判断。</p>
+
+  </section>
+
+
+  <footer>
+    BitcoinForEveryoneCN · 普通人的比特币指南
+  </footer>
+
+</div>
+
+
+<script>
+
+const articles = [
+
+  {
+    title: "如果在比特币历史高点开始定投，会发生什么？",
+    category: "怎么买",
+    evidence: "数据级",
+    summary: "用历史价格回测，从极端不利的开始时间观察长期定投的真实体验。",
+    keywords: "定投 历史高点 2021 ATH 回测 买入"
+  },
+
+  {
+    title: "每天、每周、每月定投，差别到底有多大？",
+    category: "怎么买",
+    evidence: "数据级",
+    summary: "比较不同定投频率对最终 BTC 数量、成本和波动体验的影响。",
+    keywords: "每天 每周 每月 定投 DCA 频率"
+  },
+
+  {
+    title: "一次性买入和定投有什么区别？",
+    category: "怎么买",
+    evidence: "推论级",
+    summary: "不是简单比较谁收益更高，而是比较资金一次暴露与分期暴露的不同风险。",
+    keywords: "一次性买入 定投 lump sum DCA 风险"
+  },
+
+  {
+    title: "比特币历史上经历过多深的回撤？",
+    category: "波动与风险",
+    evidence: "数据级",
+    summary: "整理主要历史周期中的大幅下跌，先理解最坏时候可能是什么感觉。",
+    keywords: "回撤 暴跌 熊市 50% 70% 80%"
+  },
+
+  {
+    title: "如果刚开始买，BTC 就跌了 50% 怎么办？",
+    category: "波动与风险",
+    evidence: "观点级",
+    summary: "真正需要解决的不是预测反弹，而是投入金额和时间跨度是否允许继续执行。",
+    keywords: "跌50 暴跌 风险承受 定投"
+  },
+
+  {
+    title: "没有应急资金之前，要不要开始买 BTC？",
+    category: "开始之前",
+    evidence: "观点级",
+    summary: "短期生活资金和高波动资产承担的是完全不同的任务。",
+    keywords: "应急资金 生活费 现金 储备"
+  },
+
+  {
+    title: "负债的时候适不适合买比特币？",
+    category: "开始之前",
+    evidence: "观点级",
+    summary: "先区分房贷、低息长期债务和高息消费债务，再讨论风险资产配置。",
+    keywords: "负债 房贷 信用卡 消费贷"
+  },
+
+  {
+    title: "比特币放交易所和自己保管，有什么区别？",
+    category: "怎么保管",
+    evidence: "事实级",
+    summary: "交易所托管和自行持有私钥面对的是两套完全不同的风险。",
+    keywords: "交易所 冷钱包 私钥 自托管 custody"
+  },
+
+  {
+    title: "助记词到底是什么？",
+    category: "怎么保管",
+    evidence: "事实级",
+    summary: "理解助记词、私钥和地址之间最基本的关系，以及为什么助记词不能随便泄露。",
+    keywords: "助记词 私钥 钱包 seed phrase"
+  },
+
+  {
+    title: "如果本人突然去世，家人怎样找到 BTC？",
+    category: "怎么保管",
+    evidence: "观点级",
+    summary: "长期持有不仅要考虑自己怎么保管，也要考虑家人怎样合法、安全地继承。",
+    keywords: "继承 去世 遗产 家人 BTC"
+  },
+
+  {
+    title: "只有 2100 万枚，所以比特币一定上涨吗？",
+    category: "常见误区",
+    evidence: "推论级",
+    summary: "供应上限属于协议事实，但从供应有限直接推出价格必涨，中间仍缺少需求条件。",
+    keywords: "2100万 稀缺 供应 上涨"
+  },
+
+  {
+    title: "必须拥有完整的 1 BTC 才有意义吗？",
+    category: "常见误区",
+    evidence: "事实级",
+    summary: "比特币可以被拆分成很小的单位，持有数量并不存在必须跨过 1 BTC 的技术门槛。",
+    keywords: "1 BTC 聪 satoshi 买不起"
+  },
+
+  {
+    title: "减半以后一定会上涨吗？",
+    category: "常见误区",
+    evidence: "推论级",
+    summary: "历史上的减半与上涨曾多次同时出现，但相关性不能自动变成未来价格保证。",
+    keywords: "减半 halving 牛市 上涨"
+  },
+
+  {
+    title: "什么情况下应该停止继续买入？",
+    category: "长期持有",
+    evidence: "观点级",
+    summary: "当现金流、短期用钱需求、风险承受能力或最初逻辑发生变化时，应重新检查计划。",
+    keywords: "停止定投 停止买入 现金流"
+  },
+
+  {
+    title: "如果十年后比特币失败了，可能是什么原因？",
+    category: "长期持有",
+    evidence: "推论级",
+    summary: "长期研究不能只研究成功路径，也应该主动寻找可能让原有逻辑失效的条件。",
+    keywords: "失败 风险 十年 长期 黑天鹅"
+  }
+
+];
+
+
+const cards = document.getElementById("cards");
+const input = document.getElementById("searchInput");
+const categoryFilter = document.getElementById("categoryFilter");
+const evidenceFilter = document.getElementById("evidenceFilter");
+const resultCount = document.getElementById("resultCount");
+const topCount = document.getElementById("topCount");
+const empty = document.getElementById("empty");
+
+
+function evidenceClass(evidence) {
+
+  if (evidence === "数据级") return "data";
+  if (evidence === "事实级") return "fact";
+  if (evidence === "推论级") return "inference";
+  return "opinion";
+
+}
+
+
+function render() {
+
+  const keyword = input.value.trim().toLowerCase();
+  const category = categoryFilter.value;
+  const evidence = evidenceFilter.value;
+
+  const filtered = articles.filter(item => {
+
+    const text =
+      (
+        item.title + " " +
+        item.summary + " " +
+        item.keywords
+      ).toLowerCase();
+
+    const matchKeyword =
+      !keyword || text.includes(keyword);
+
+    const matchCategory =
+      !category || item.category === category;
+
+    const matchEvidence =
+      !evidence || item.evidence === evidence;
+
+    return matchKeyword && matchCategory && matchEvidence;
+
+  });
+
+
+  cards.innerHTML = "";
+
+  filtered.forEach(item => {
+
+    const div = document.createElement("article");
+
+    div.className = "card";
+
+    div.innerHTML = `
+      <h2>${item.title}</h2>
+
+      <p>${item.summary}</p>
+
+      <div class="meta">
+        <span class="tag">${item.category}</span>
+        <span class="tag ${evidenceClass(item.evidence)}">${item.evidence}</span>
+      </div>
+    `;
+
+    cards.appendChild(div);
+
+  });
+
+
+  resultCount.textContent = filtered.length;
+
+  empty.style.display =
+    filtered.length === 0 ? "block" : "none";
+
+}
+
+
+function resetFilters() {
+
+  input.value = "";
+  categoryFilter.value = "";
+  evidenceFilter.value = "";
+
+  render();
+
+}
+
+
+input.addEventListener("input", render);
+categoryFilter.addEventListener("change", render);
+evidenceFilter.addEventListener("change", render);
+
+topCount.textContent = articles.length;
+
+render();
+
+</script>
+
+</body>
+</html>
